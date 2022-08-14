@@ -1,0 +1,32 @@
+{
+  "name": "men-test-pvt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandrofsexpert/men-test-pvt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leandrofsexpert/men-test-pvt/issues"
+  },
+  "homepage": "https://github.com/leandrofsexpert/men-test-pvt#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "jest": "^28.1.3",
+    "mongoose": "^6.5.2",
+    "nodemon": "^2.0.19"
+  }
+}
