@@ -2,6 +2,8 @@
 import * as config from './utils/config.js'
 
 //inicializando nossa aplicação de backend com express
+import cors from "cors"
+
 import express from "express";
 const app = express()
 
@@ -28,6 +30,9 @@ connectToDB()
 
 //indicando que vamos reconhecer as requisições no formato JSON
 app.use(express.json())
+
+//indicando que vamos aceitar requisições de outros servidores
+app.use(cors())
 
 //indicando o endereço da nossa API: localhost:3001/api/items e associando ao gerenciador de rotas
 app.use('/api/items', itemsRouter)
