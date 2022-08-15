@@ -53,7 +53,7 @@ describe('GET calls', () => {
 
         //testando o cenário de não encontrado
         await
-            api.get(`/api/items/${'id-qualquer-not-found'}`).then((res) => {
+            api.get(`/api/items/${'id-not-found'}`).then((res) => {
                 expect(res.statusCode).toBe(404)
             })
 
@@ -174,5 +174,5 @@ test('PUT call', async () => {
 
     //verificando se o item foi atualizado, checando a descrição"
     expect(items[items.length - 1].description).toBe("updated!")
-    
+
 })
