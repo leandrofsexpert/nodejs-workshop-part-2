@@ -139,23 +139,23 @@ test('DELETE item', async () => {
 
 test('PUT call', async () => {
     //build a new item
-    const newItem = {
-        description:"sent from Jest!",
-        likes: 10
+    const updatedItem = {
+        description:"updated!",
+        likes: 100
     }
 
     const itemsInDb = await Item.find({})
-    const firstItemInDb = itemsInDb[0].toJSON()
+    const lastItemInDb = itemsInDb[itemsInDb.length-1].toJSON()
 
     //we send the item object to the DB through the API
     //we expect a successful result
     await api
-        .put(`/api/items/${firstItemInDb.id}`)
-        .send(newItem)
+        .put(`/api/items/${lastItemInDb.id}`)
+        .send(updatedItem)
         .expect(201)
     //get all the items in our DB
     const items = await Item.find({})
-    //let's check that the last item added was indeed newItem object
+    //let's check that the last item added was indeed updatedItem object
     //it should contain the description "sent from Jest!"
-    expect(items[items.length-1].description).toBe("third item")
+    expect(items[items.length-1].description).toBe("updated!")
 })
