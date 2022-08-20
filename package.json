@@ -36,6 +36,7 @@
     "collectCoverageFrom": [
       "models/**/*.{js,jsx}",
       "controllers/**/*.{js,jsx}",
+      "services/**/*.{js,jsx}",
       "!<rootDir>/node_modules/"
     ]
   }

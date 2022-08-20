@@ -4,19 +4,19 @@ import { app } from '../app.js'
 //vamos usar o supertest para conseguir fazer as requisições http através dos testes
 const api = supertest(app)
 
-import { Item } from '../models/item'
+import { ItemModel } from '../models/itemModel'
 
 //pegando o array de items iniciais para nossos testes
 import { initialItems } from './test_helper.js'
 
 beforeEach(async () => {
-    await Item.deleteMany({})
-    await Item.insertMany(initialItems)
+    await ItemModel.deleteMany({})
+    await ItemModel.insertMany(initialItems)
 })
 
 afterAll(() => mongoose.connection.close())
 
-//run npm test -- -t "GET call"
+//executar: npm test -- -t "GET calls" para executar esse bloco de testes
 //testando todas as possibilidade de requisições do tipo GET
 describe('GET calls', () => {
     //run npm test -- -t "GET call"
@@ -33,7 +33,7 @@ describe('GET calls', () => {
     test('GET one', async () => {
         
         //buscando todos os items
-        const items = await Item.find({})
+        const items = await ItemModel.find({})
         
         //pega o primeiro item do modelo e faz o parse em JSON
         const firstItem = items[0].toJSON()
@@ -86,7 +86,7 @@ describe('POST calls', () => {
             .expect(201)
         
             //pega todos os items do banco
-        const items = await Item.find({})
+        const items = await ItemModel.find({})
         
         //vamos verificar se o item foi inserido, checando a descrição do último item da coleção
         expect(items[items.length - 1].description).toBe("sent from Jest!")
@@ -105,7 +105,7 @@ describe('POST calls', () => {
             .send(newItem)
             .expect(201)
         
-        const items = await Item.find({})
+        const items = await ItemModel.find({})
         expect(items[items.length - 1].likes).toEqual(0)
 
     })
@@ -129,7 +129,7 @@ describe('POST calls', () => {
 test('DELETE item', async () => {
 
     //recuperando os items e convertendo em JSON o item que vamos deletar
-    const itemsAtStart = await Item.find({})
+    const itemsAtStart = await ItemModel.find({})
     const itemToDelete = itemsAtStart[0].toJSON()
 
     //deleta o item através do id
@@ -138,7 +138,7 @@ test('DELETE item', async () => {
         .expect(204)
     
     //busca os items no banco novamente
-    const itemsNow = await Item.find({})
+    const itemsNow = await ItemModel.find({})
     
     //verificando se temos um item a menos após a deleção
     expect(itemsNow).toHaveLength(itemsAtStart.length - 1)
@@ -160,7 +160,7 @@ test('PUT call', async () => {
         likes: 100
     }
 
-    const itemsInDb = await Item.find({})
+    const itemsInDb = await ItemModel.find({})
     const lastItemInDb = itemsInDb[itemsInDb.length - 1].toJSON()
 
     //chamamos o método de atualização, esperando resultado de sucesso
@@ -170,7 +170,7 @@ test('PUT call', async () => {
         .expect(201)
 
     //pegando todos os items do banco
-    const items = await Item.find({})
+    const items = await ItemModel.find({})
 
     //verificando se o item foi atualizado, checando a descrição"
     expect(items[items.length - 1].description).toBe("updated!")

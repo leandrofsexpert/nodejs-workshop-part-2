@@ -21,6 +21,6 @@ itemSchema.set('toJSON', {
 })
 
 //mongoose precisa que seja definido um modelo com o schema
-const Item = mongoose.model('Item', itemSchema)
+const ItemModel = mongoose.model('Item', itemSchema)
 
-export { Item }
+export { ItemModel }

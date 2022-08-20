@@ -8,7 +8,7 @@ import express from "express";
 const app = express()
 
 //referenciando o nosso gerenciador de rotas
-import { itemsRouter } from './controllers/items.js'
+import { itemsRouter } from './controllers/itemController.js'
 
 //mongoose - fazendo conexão com mongodb
 import mongoose from 'mongoose'
