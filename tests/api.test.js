@@ -8,7 +8,7 @@ import { ItemModel } from '../models/itemModel'
 //pegando o array de items iniciais para nossos testes
 import { initialItems } from './test_helper.js'
 
-describe.skip('Organizando todos os testes', () => {
+describe('Organizando todos os testes', () => {
     //vamos usar o supertest para conseguir fazer as requisições http através dos testes
     const api = supertest(app)
     beforeEach(async () => {
